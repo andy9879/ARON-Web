@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <script src="/socket.io/socket.io.js"></script>
+        
+    </head>
+    <body>
+        <button id="test">test</button>
+
+        <div id="data"></div>
+
+        <script>
+            var socket = io();
+
+            
+            
+            
+            socket.on('dataTx', function(dataRx) {
+            var data = document.getElementById("data");
+                console.log(dataRx);
+                console.log("rx");
+                data.innerHTML = JSON.stringify(dataRx);
+            });
+            function retriveData(){
+                console.log("hi");
+                socket.emit("dataReq","test");
+            }
+
+            document.getElementById("test").addEventListener("click", retriveData);
+
+        </script>
+
+    </body>
+
+
+</html>
